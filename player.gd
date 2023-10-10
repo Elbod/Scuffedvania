@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var gravity = 160
 @export var jump_force = 5000
 var is_crouching = false
+var jumpcommit = false
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $sprite
@@ -12,15 +13,20 @@ func _physics_process(delta):
 	###Gravity ish
 	if ! is_on_floor():
 		velocity.y += gravity * delta
+		jumpcommit = true
+		
 		if velocity.y > 6000 * delta:
 			velocity.y = 6000 * delta
+	else:
+		jumpcommit = false
 	###Jumping
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 			velocity.y = -jump_force * delta
 	
 	####MOVING
 	var horizontal_direction = Input.get_axis("move_left", "move_right")
-	velocity.x = speed * horizontal_direction * delta
+	if jumpcommit == false:
+		velocity.x = speed * horizontal_direction * delta
 	
 	if horizontal_direction != 0:
 		sprite.flip_h = (horizontal_direction == -1)
@@ -45,3 +51,5 @@ func update_animations(horizontal_direction):
 			ap.play("running")
 		if is_crouching == true:
 			ap.play("crouching")
+	if ! is_on_floor():
+		ap.play("jumping")
