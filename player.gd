@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var gravity = 300
 @export var jump_force = 6000
 var is_crouching = false
+var is_climbing = false
 var jumpcommit = false
 var whipcommit = false
 
@@ -13,6 +14,8 @@ var whipcommit = false
 @onready var whipcooldown = $whipcooldown
 @onready var whip = $whip
 @onready var whiphitbox = $sprite/whiphitbox
+@onready var stairscheck = $staircheck
+@onready var stairs = $"../stairs"
 
 func _on_whiptimerin_timeout():
 	whip.visible = true
@@ -45,6 +48,7 @@ func _physics_process(delta):
 	if ! is_on_floor():
 		velocity.y += gravity * delta
 		jumpcommit = true
+		is_climbing = false
 		
 		if velocity.y > 8000 * delta:
 			velocity.y = 8000 * delta
@@ -81,6 +85,7 @@ func _physics_process(delta):
 	###Jumping
 	if Input.is_action_just_pressed("jump") && is_on_floor() && whipcommit == false:
 		velocity.y = -jump_force * delta
+		is_climbing = false
 	
 	
 	###WHIPFLOOR
@@ -97,9 +102,11 @@ func _physics_process(delta):
 	
 	if horizontal_direction != 0 && whipcommit == false:
 		sprite.flip_h = (horizontal_direction == -1)
-
-
-		###CROUCHING
+	
+	#### STAIRS
+	stairs_action()
+	
+	###CROUCHING
 	if Input.is_action_pressed("crouching") && is_on_floor():
 		velocity.x = 0
 		is_crouching = true
@@ -115,5 +122,15 @@ func _on_whiphitbox_body_entered(body):
 		body.take_damage()
 
 func upgrade_player():
-	
 	pass
+
+func stairs_action():
+	if self.is_on_floor_only() && stairscheck.is_colliding() == false:
+		stairs.collision_layer = 0
+	if is_climbing == false:
+		stairs.collision_layer = 0
+	if Input.is_action_pressed("stairs") && stairscheck.is_colliding():
+		is_climbing = true
+		stairs.collision_layer = 2
+	if Input.is_action_pressed("stairs"):
+		stairs.collision_layer = 2

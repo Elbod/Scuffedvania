@@ -11,12 +11,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("reset"):
+		get_tree().reload_current_scene()
 	### CAMERA CONTROLS ###
 	if camerascrolltype == "x":
 		camerascroll_x()
 	else:
 		camerascroll_y()
-		
+
+	#decoration_paralax_notmove()
 	#####TESTING
 	if Input.is_action_just_pressed("testing button"):
 		#testing()
@@ -27,3 +30,6 @@ func camerascroll_x():
 	camera.position.x = player.position.x
 func camerascroll_y():
 	camera.position.y = player.position.y
+#func decoration_paralax_notmove():
+	#$decorations/moon.position.x = player.position.x
+	

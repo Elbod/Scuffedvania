@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var hurtbox = $hurtbox
 @onready var enemy = $"."
-var hp = 1
+var hp = 10
 var direction = -1
 @export var speed = 1600
 @export var gravity = 200
@@ -24,6 +24,11 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 			if velocity.y > 8000 * delta:
 				velocity.y = 8000 * delta
+	### HITTING WALL
+	if self.is_on_wall() && $Timer.is_stopped():
+		$Timer.start()
+		direction *= -1
+	
 	### ANIMATION
 	$AnimationPlayer.play("running")
 	move_and_slide()

@@ -1,4 +1,4 @@
 extends Node
 
-var damage = 2
+var damage = 10
 var area = 2

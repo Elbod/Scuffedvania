@@ -411,6 +411,8 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["playergroup"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_um70p")
 
 [node name="whip" type="Sprite2D" parent="."]
@@ -439,6 +441,8 @@ shape = SubResource("RectangleShape2D_c0djr")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_nyurb")
 one_way_collision = true
@@ -455,6 +459,11 @@ one_shot = true
 [node name="whiptimerout" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="staircheck" type="RayCast2D" parent="."]
+position = Vector2(-3, 0)
+target_position = Vector2(7, 0)
+collision_mask = 2
 
 [connection signal="body_entered" from="sprite/whiphitbox" to="." method="_on_whiphitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
