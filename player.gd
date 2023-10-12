@@ -54,6 +54,10 @@ func _physics_process(delta):
 			velocity.y = 8000 * delta
 	else:
 		jumpcommit = false
+	### FALLING IN A PIT
+	if $deathcheck.is_colliding():
+		get_tree().reload_current_scene()
+	
 	###WHIP ORIENTATION
 	if sprite.flip_h == true:
 		if global.area == 1:
