@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cc4c5r6n83qx5"]
+[gd_scene load_steps=12 format=3 uid="uid://cc4c5r6n83qx5"]
 
 [ext_resource type="Script" path="res://dog.gd" id="1_3bkic"]
 [ext_resource type="Texture2D" uid="uid://wej2v058peni" path="res://assets/enemies2.png" id="2_wm8sq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t45ui"]
-size = Vector2(16, 8)
+size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxvjf"]
+size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w3ok"]
 size = Vector2(94, 168)
@@ -178,10 +181,17 @@ vframes = 8
 
 [node name="hurtbox" type="CollisionShape2D" parent="."]
 visibility_layer = 0
-position = Vector2(0.424988, -3.3916)
+position = Vector2(0.424988, -3.8916)
 shape = SubResource("RectangleShape2D_t45ui")
 one_way_collision = true
 one_way_collision_margin = 0.0
+
+[node name="hitbox" type="Area2D" parent="."]
+position = Vector2(-0.437988, -3.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.862976, 0.108398)
+shape = SubResource("RectangleShape2D_uxvjf")
 
 [node name="spawnarea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -206,4 +216,5 @@ libraries = {
 "": SubResource("AnimationLibrary_xygmw")
 }
 
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="spawnarea" to="." method="_on_spawnarea_body_entered" flags=18]

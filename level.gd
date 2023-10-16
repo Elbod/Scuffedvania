@@ -20,9 +20,13 @@ func _process(delta):
 	else:
 		camerascroll_y()
 		
+	#### HP TO 0 GAME OVER
+	if global.playerhp <= 0:
+		global.playerhp = global.playermaxhp
+		get_tree().reload_current_scene()
+		
 	#####TESTING
 	if Input.is_action_just_pressed("testing button"):
-		generate_zombie()
 		pass
 	############
 

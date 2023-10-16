@@ -1,9 +1,11 @@
 extends CharacterBody2D
 @onready var hurtbox = $hurtbox
 @onready var enemy = $"."
+@onready var hitbox = $hitbox
 var hp = 10
 var direction = -1
 var jumpedonce = false
+var delta_global = 0
 @export var speed = 3000
 @export var gravity = 150
 @export var jump_force = 3000
@@ -13,6 +15,7 @@ func _ready():
 	$AnimationPlayer.play("idle")
 
 func _physics_process(delta):
+	delta_global = delta
 	### HP DISPLAY
 	$Label.text = str(hp)
 	### FLIP DIRECTION
@@ -45,7 +48,10 @@ func take_damage():
 	hp -= global.damage
 	$Label.text = str(hp)
 	if hp <= 0:
+		hitbox.collision_layer = 0
+		hitbox.collision_mask = 0
 		hurtbox.disabled = true
+		hurtbox.set_deferred("disabled",true)
 		self.visible = false
 
 func _on_spawnarea_body_entered(body):
@@ -57,3 +63,7 @@ func _on_spawnarea_body_entered(body):
 		$AnimationPlayer.play("running")
 		agro = true
 		
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("playergroup"):
+		body.take_damage(delta_global)

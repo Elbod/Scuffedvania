@@ -4,8 +4,8 @@ extends CharacterBody2D
 @onready var hitbox = $hitbox
 var hp = 10
 var direction = -1
-@export var speed = 1600
-@export var gravity = 200
+@export var speed = 40
+@export var gravity = 0
 @export var jump_force = 5000
 @export var agro = false
 var delta_global = 0
@@ -14,26 +14,15 @@ func _physics_process(delta):
 	delta_global = delta
 	### HP DISPLAY
 	$Label.text = str(hp)
-	### FLIP DIRECTION
-	if direction < 0:
-		$sprite.flip_h = true
-	else:
-		$sprite.flip_h = false
+
 	### ENEMY ACTIVE? > MOVE
 	if agro == true:
-		velocity.x = speed * direction * delta
-		### GRAVITY
-		if ! is_on_floor():
-			velocity.y += gravity * delta
-			if velocity.y > 8000 * delta:
-				velocity.y = 8000 * delta
-	### HITTING WALL
-	if self.is_on_wall() && $Timer.is_stopped():
-		$Timer.start()
-		direction *= -1
-	
+		velocity.x = (($"../../player".position.x - self.position.x) * speed) * delta
+		velocity.y = (($"../../player".position.y - self.position.y) * speed) * delta
+
+
 	### ANIMATION
-	$AnimationPlayer.play("running")
+	$AnimationPlayer.play("idle")
 	move_and_slide()
 
 func take_damage():
@@ -42,19 +31,20 @@ func take_damage():
 	if hp <= 0:
 		hitbox.collision_layer = 0
 		hitbox.collision_mask = 0
-		hurtbox.disabled = true
 		hurtbox.set_deferred("disabled",true)
+		$hitbox/CollisionShape2D.disabled = true
 		self.visible = false
+		self.hide()
 
 func _on_spawnarea_body_entered(body):
 	if body.is_in_group("playergroup"):
-		if $"../../player".position.x < self.position.x:
-			direction = -1
-		else:
-			direction = 1
 		agro = true
 
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("playergroup"):
 		body.take_damage(delta_global)
+		### BAT SUICIDES
+		hp = 0
+		take_damage()
+
