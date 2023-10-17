@@ -76,11 +76,6 @@ tracks/2/keys = {
 "values": [8]
 }
 
-[sub_resource type="Animation" id="Animation_7l0f3"]
-resource_name = "running"
-length = 0.4
-loop_mode = 1
-
 [sub_resource type="Animation" id="Animation_8ruce"]
 resource_name = "idle"
 length = 0.4
@@ -121,6 +116,11 @@ tracks/2/keys = {
 "update": 1,
 "values": [8, 9, 10, 11]
 }
+
+[sub_resource type="Animation" id="Animation_7l0f3"]
+resource_name = "running"
+length = 0.4
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xygmw"]
 _data = {
