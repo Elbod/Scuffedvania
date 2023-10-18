@@ -19,6 +19,10 @@ func _physics_process(delta):
 	if agro == true:
 		velocity.x = (($"../../player".position.x - self.position.x) * speed) * delta
 		velocity.y = (($"../../player".position.y - self.position.y) * speed) * delta
+		if velocity.x > 0 && velocity.x < 20:
+			velocity.x = 20
+		if velocity.x < 0 && velocity.x > -20:
+			velocity.x = -20
 
 
 	### ANIMATION
