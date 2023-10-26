@@ -16,7 +16,7 @@ var inmortal= false
 @onready var whiptimerin = $whiptimerin
 @onready var whiptimerout = $whiptimerout
 @onready var whipcooldown = $whipcooldown
-@onready var whip = $sprite/whip
+@onready var whip = $whip
 @onready var whiphitbox = $sprite/whiphitbox
 @onready var stairscheck = $staircheck
 @onready var stairs = $"../stairs"
@@ -45,7 +45,10 @@ func update_animations(horizontal_direction):
 		if is_crouching == true:
 			ap.play("crouching")
 	if ! is_on_floor() && whipcommit == false:
-		ap.play("jumping")
+		if $AnimationPlayer/jumpingbounce.is_stopped():
+			ap.play("jumping")
+		else:
+			ap.play("jumping_bounce")
 	if whipcommit == true:
 		ap.play("attack_standing")
 	if is_damaged_ended == false:
@@ -104,6 +107,7 @@ func _physics_process(delta):
 	###Jumping
 	if Input.is_action_just_pressed("jump") && is_on_floor() && whipcommit == false && is_damaged_ended == true:
 		velocity.y = -jump_force * delta
+		$AnimationPlayer/jumpingbounce.start()
 		is_climbing = false
 	
 	

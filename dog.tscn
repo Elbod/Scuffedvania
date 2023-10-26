@@ -10,7 +10,7 @@ size = Vector2(16, 7)
 size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w3ok"]
-size = Vector2(94, 168)
+size = Vector2(94, 81)
 
 [sub_resource type="FontFile" id="FontFile_n5g8b"]
 subpixel_positioning = 0
@@ -198,7 +198,7 @@ unique_name_in_owner = true
 position = Vector2(-5, -22)
 
 [node name="spawnarea" type="CollisionShape2D" parent="spawnarea"]
-position = Vector2(5.42499, 19.6084)
+position = Vector2(5.42499, 20.1084)
 shape = SubResource("RectangleShape2D_2w3ok")
 one_way_collision = true
 
