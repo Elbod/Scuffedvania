@@ -1,7 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5lw6q66wnn6r"]
+<<<<<<< HEAD
+[gd_scene load_steps=16 format=3 uid="uid://b5lw6q66wnn6r"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://b5lw6q66wnn6r"]
+>>>>>>> parent of 4930b93 (update)
 
 [ext_resource type="Script" path="res://player.gd" id="1_um70p"]
 [ext_resource type="Texture2D" uid="uid://br8cf47bsujt3" path="res://assets/player1.png" id="1_xuntk"]
+[ext_resource type="Texture2D" uid="uid://wej2v058peni" path="res://assets/enemies2.png" id="3_4b0tb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0djr"]
 size = Vector2(8, 2)
@@ -446,36 +451,41 @@ tracks/6/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7qlcq"]
-resource_name = "running"
+<<<<<<< HEAD
+[sub_resource type="Animation" id="Animation_eniks"]
+resource_name = "jumping"
+loop_mode = 2
+=======
+[sub_resource type="Animation" id="Animation_e3m1l"]
+resource_name = "jumping"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("sprite:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_xuntk")]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:vframes")
+tracks/2/path = NodePath("sprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -487,40 +497,93 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:frame")
+tracks/3/path = NodePath("sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2]
+"values": [4]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("sprite:position")
+tracks/4/path = NodePath("sprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -4)]
+"values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("sprite:scale")
+tracks/5/path = NodePath("sprite:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, -8), Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_7qlcq"]
+resource_name = "running"
+>>>>>>> parent of 4930b93 (update)
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sprite:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
+<<<<<<< HEAD
 [sub_resource type="Animation" id="Animation_e3m1l"]
 resource_name = "jumping_bounce"
 loop_mode = 2
@@ -597,37 +660,36 @@ tracks/5/keys = {
 "values": [Vector2(0, -4), Vector2(0, -8), Vector2(0, -4)]
 }
 
-[sub_resource type="Animation" id="Animation_eniks"]
-resource_name = "jumping"
-loop_mode = 2
+[sub_resource type="Animation" id="Animation_7qlcq"]
+resource_name = "running"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:offset")
+tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [ExtResource("1_xuntk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:frame")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:hframes")
+tracks/2/path = NodePath("sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -639,16 +701,42 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("sprite:vframes")
+tracks/3/path = NodePath("sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprite:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
+=======
+>>>>>>> parent of 4930b93 (update)
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kdpq"]
 _data = {
 "RESET": SubResource("Animation_62nb7"),
@@ -656,8 +744,7 @@ _data = {
 "crouching": SubResource("Animation_bx3t6"),
 "damaged": SubResource("Animation_qnxqb"),
 "idle": SubResource("Animation_3lb2p"),
-"jumping": SubResource("Animation_eniks"),
-"jumping_bounce": SubResource("Animation_e3m1l"),
+"jumping": SubResource("Animation_e3m1l"),
 "running": SubResource("Animation_7qlcq")
 }
 
@@ -671,22 +758,22 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_um70p")
 
-[node name="whip" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-20, -8)
-scale = Vector2(2, 1)
-texture = ExtResource("1_xuntk")
-centered = false
-hframes = 4
-vframes = 4
-frame = 12
-
 [node name="sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -4)
 texture = ExtResource("1_xuntk")
 hframes = 4
 vframes = 4
+
+[node name="whip" type="Sprite2D" parent="sprite"]
+visible = false
+position = Vector2(-20, -4)
+scale = Vector2(2, 1)
+texture = ExtResource("1_xuntk")
+centered = false
+hframes = 4
+vframes = 4
+frame = 12
 
 [node name="whiphitbox" type="Area2D" parent="sprite"]
 position = Vector2(-12, 0)
@@ -705,10 +792,6 @@ one_way_collision = true
 libraries = {
 "": SubResource("AnimationLibrary_2kdpq")
 }
-
-[node name="jumpingbounce" type="Timer" parent="AnimationPlayer"]
-wait_time = 0.3
-one_shot = true
 
 [node name="whiptimerin" type="Timer" parent="."]
 wait_time = 0.2
@@ -744,6 +827,14 @@ offset_right = 37.0
 offset_bottom = 8.0
 text = "5"
 label_settings = SubResource("LabelSettings_e1e67")
+
+[node name="bat" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -2)
+texture = ExtResource("3_4b0tb")
+hframes = 8
+vframes = 8
+frame = 8
 
 [connection signal="body_entered" from="sprite/whiphitbox" to="." method="_on_whiphitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
