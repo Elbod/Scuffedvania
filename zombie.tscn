@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n33t5h2onyq"]
+[gd_scene load_steps=12 format=3 uid="uid://n33t5h2onyq"]
 
 [ext_resource type="Script" path="res://enemy1.gd" id="1_gb3c0"]
 [ext_resource type="Texture2D" uid="uid://7x0ip7rsvmrr" path="res://assets/enemies1.png" id="2_oywto"]
@@ -10,7 +10,7 @@ size = Vector2(5, 9)
 size = Vector2(5, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2w3ok"]
-size = Vector2(170.191, 168)
+size = Vector2(278, 168)
 
 [sub_resource type="FontFile" id="FontFile_n5g8b"]
 subpixel_positioning = 0
@@ -123,11 +123,15 @@ _data = {
 "running": SubResource("Animation_7l0f3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nowfk"]
+size = Vector2(314, 183)
+
 [node name="zombie1" type="CharacterBody2D" groups=["hurtbox"]]
 position = Vector2(118.692, 35.1161)
 script = ExtResource("1_gb3c0")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -157,7 +161,7 @@ unique_name_in_owner = true
 position = Vector2(-5, -22)
 
 [node name="spawnarea" type="CollisionShape2D" parent="spawnarea"]
-position = Vector2(5.0955, 24.5521)
+position = Vector2(1.308, 24.5521)
 shape = SubResource("RectangleShape2D_2w3ok")
 one_way_collision = true
 
@@ -175,5 +179,13 @@ libraries = {
 "": SubResource("AnimationLibrary_xygmw")
 }
 
+[node name="leavearea" type="Area2D" parent="."]
+position = Vector2(-5, -22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leavearea"]
+position = Vector2(4.30799, 24.3839)
+shape = SubResource("RectangleShape2D_nowfk")
+
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="spawnarea" to="." method="_on_spawnarea_body_entered"]
+[connection signal="body_exited" from="leavearea" to="." method="_on_leavearea_body_exited"]

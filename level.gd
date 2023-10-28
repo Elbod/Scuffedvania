@@ -1,6 +1,7 @@
 extends Node2D
 @onready var player = $player
 @onready var camera = $Camera2D
+
 var camerascrolltype = "x"
 var zombiespawn = load("res://zombie.tscn")
 

@@ -36,15 +36,13 @@ func _physics_process(delta):
 	$AnimationPlayer.play("running")
 	move_and_slide()
 
+#ENEMY DIES BY YOUR HAND
 func take_damage():
 	hp -= global.damage
 	$Label.text = str(hp)
 	if hp <= 0:
-		hitbox.collision_layer = 0
-		hitbox.collision_mask = 0
-		hurtbox.disabled = true
-		hurtbox.set_deferred("disabled",true)
-		self.visible = false
+		global.experience += 1
+		despawn()
 
 func _on_spawnarea_body_entered(body):
 	if body.is_in_group("playergroup"):
@@ -54,7 +52,29 @@ func _on_spawnarea_body_entered(body):
 			direction = 1
 		agro = true
 
-
+#ENEMY GETS HIT BY ACTION playergroup
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("playergroup"):
 		body.take_damage(delta_global)
+	if body.is_in_group("pit"):
+		despawn()
+
+func initialize():
+	pass
+
+#ENEMY TOO FAR FROM PLAYER
+func _on_leavearea_body_exited(body):
+	if body.is_in_group("playergroup"):
+		despawn()
+
+#DESPAWN FUNCTION
+func despawn():
+	hitbox.collision_layer = 0
+	hitbox.collision_mask = 0
+	hurtbox.disabled = true
+	hurtbox.set_deferred("disabled",true)
+	self.visible = false
+	$leavearea/CollisionShape2D.disabled = true
+	$leavearea/CollisionShape2D.set_deferred("disabled",true)
+	global.creatures -= 1
+	pass
